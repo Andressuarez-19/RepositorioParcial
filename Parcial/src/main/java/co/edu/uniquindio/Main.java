@@ -59,5 +59,40 @@ public class Main {
                 200000,
                 "Disponible"
         );
+        // ==========================================
+        // SERVICIOS ADICIONALES
+        // ==========================================
+
+        hotel.registrarServicio(
+                "S1",
+                "Restaurante",
+                "Servicio de restaurante",
+                30000,
+                true
+        );
+
+        hotel.registrarServicio(
+                "S2",
+                "Lavanderia",
+                "Servicio de lavanderia",
+                15000,
+                true
+        );
+
+        hotel.registrarServicio(
+                "S3",
+                "Transporte",
+                "Servicio de transporte",
+                20000,
+                true
+        );
+
+        hotel.registrarServicio(
+                "S4",
+                "Servicio a la habitacion",
+                "Servicio a la habitacion",
+                25000,
+                true
+        );
 
     }
