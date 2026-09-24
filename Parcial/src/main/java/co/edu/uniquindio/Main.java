@@ -571,6 +571,44 @@ public class Main {
                         null,
                         mensaje
                 );
+                // ==========================================
+                // 6. CONSULTAR INGRESOS POR FECHA
+                // ==========================================
+
+            } else if(opcion == 6) {
+
+                try {
+
+                    SimpleDateFormat formato =
+                            new SimpleDateFormat("dd/MM/yyyy");
+
+                    String fechaTexto =
+                            JOptionPane.showInputDialog(
+                                    "Ingrese la fecha de realizacion (dd/MM/yyyy):"
+                            );
+
+                    Date fecha =
+                            formato.parse(fechaTexto);
+
+                    double ingresos =
+                            hotel.consultarIngresosPorFecha(
+                                    fecha
+                            );
+
+                    JOptionPane.showMessageDialog(
+                            null,
+                            "Los ingresos de esa fecha son: $" +
+                                    ingresos
+                    );
+
+                } catch(ParseException e) {
+
+                    JOptionPane.showMessageDialog(
+                            null,
+                            "Formato de fecha incorrecto.\n" +
+                                    "Use el formato: dd/MM/yyyy"
+                    );
+                }
 
                 //
 
