@@ -6,12 +6,23 @@ import co.edu.uniquindio.model.Reserva;
 import co.edu.uniquindio.model.ServicioAdicional;
 
 import javax.swing.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Main {
+
     public static void main(String[] args) {
 
-        Hotel hotel = new Hotel("StayPlus", "900123456", "Armenia", "3111234567", "www.stayplus.com");
-        //==========================================
+        Hotel hotel = new Hotel(
+                "StayPlus",
+                "900123456",
+                "Armenia",
+                "3111234567",
+                "www.stayplus.com"
+        );
+
+        // ==========================================
         // HABITACIONES
         // ==========================================
 
@@ -59,6 +70,7 @@ public class Main {
                 200000,
                 "Disponible"
         );
+
         // ==========================================
         // SERVICIOS ADICIONALES
         // ==========================================
@@ -94,7 +106,9 @@ public class Main {
                 25000,
                 true
         );
+
         int opcion = 0;
+
         while(opcion != 7) {
 
             opcion = Integer.parseInt(
@@ -115,6 +129,7 @@ public class Main {
                             """
                     )
             );
+
             // ==========================================
             // 1. REGISTRAR HUESPED
             // ==========================================
@@ -168,7 +183,9 @@ public class Main {
                             null,
                             "El huesped ya existe."
                     );
-                }         // ==========================================
+                }
+
+                // ==========================================
                 // 2. BUSCAR HUESPED
                 // ==========================================
 
@@ -198,6 +215,7 @@ public class Main {
                             "El huesped no existe."
                     );
                 }
+
                 // ==========================================
                 // 3. REGISTRAR RESERVA
                 // ==========================================
@@ -279,6 +297,7 @@ public class Main {
                                         metodoPago,
                                         huesped
                                 );
+
                         // ==================================
                         // AGREGAR HABITACIONES
                         // ==================================
@@ -361,7 +380,71 @@ public class Main {
                                             JOptionPane.YES_NO_OPTION
                                     );
                         }
-                        ==================================
+
+                        // ==================================
+                        // AGREGAR SERVICIOS
+                        // ==================================
+
+                        int agregarServicio =
+                                JOptionPane.showConfirmDialog(
+                                        null,
+                                        "¿Desea agregar servicios adicionales?",
+                                        "Servicios",
+                                        JOptionPane.YES_NO_OPTION
+                                );
+
+                        while(agregarServicio ==
+                                JOptionPane.YES_OPTION) {
+
+                            String codigoServicio =
+                                    JOptionPane.showInputDialog(
+                                            """
+                                            SERVICIOS
+                                            
+                                            S1 - Restaurante - $30.000
+                                            S2 - Lavanderia - $15.000
+                                            S3 - Transporte - $20.000
+                                            S4 - Servicio a la habitacion - $25.000
+                                            
+                                            Ingrese el codigo:
+                                            """
+                                    );
+
+                            ServicioAdicional servicio =
+                                    hotel.buscarServicio(
+                                            codigoServicio
+                                    );
+
+                            if(servicio != null &&
+                                    servicio.estaDisponible()) {
+
+                                reserva
+                                        .getListReservaServicios()
+                                        .add(servicio);
+
+                                JOptionPane.showMessageDialog(
+                                        null,
+                                        "Servicio agregado correctamente."
+                                );
+
+                            } else {
+
+                                JOptionPane.showMessageDialog(
+                                        null,
+                                        "El servicio no existe o no esta disponible."
+                                );
+                            }
+
+                            agregarServicio =
+                                    JOptionPane.showConfirmDialog(
+                                            null,
+                                            "¿Desea agregar otro servicio?",
+                                            "Servicios",
+                                            JOptionPane.YES_NO_OPTION
+                                    );
+                        }
+
+                        // ==================================
                         // REGISTRAR RESERVA
                         // ==================================
 
@@ -401,7 +484,8 @@ public class Main {
                                     "Use el formato: dd/MM/yyyy"
                     );
                 }
-                //==========================================
+
+                // ==========================================
                 // 4. CONSULTAR VALOR TOTAL
                 // ==========================================
 
@@ -424,6 +508,7 @@ public class Main {
 
                     long noches =
                             reserva.calcularCantidadNoches();
+
                     // ==================================
                     // MOSTRAR HABITACIONES
                     // ==================================
@@ -535,7 +620,7 @@ public class Main {
                     );
                 }
 
-                //==========================================
+                // ==========================================
                 // 5. MOSTRAR HABITACIONES
                 // ==========================================
 
@@ -571,6 +656,7 @@ public class Main {
                         null,
                         mensaje
                 );
+
                 // ==========================================
                 // 6. CONSULTAR INGRESOS POR FECHA
                 // ==========================================
@@ -610,7 +696,7 @@ public class Main {
                     );
                 }
 
-                //==========================================
+                // ==========================================
                 // 7. SALIR
                 // ==========================================
 
@@ -624,6 +710,3 @@ public class Main {
         }
     }
 }
-
-
-    }
