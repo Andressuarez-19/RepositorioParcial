@@ -55,6 +55,49 @@ public class Reserva {
 
         return noches;
     }
+    /**
+     * Metodo que permite calcular el valor total de la reserva.
+     */
+    public double calcularValorTotal() {
+
+        long noches = calcularCantidadNoches();
+
+        double valorHabitaciones = 0;
+
+        // Calcular valor de todas las habitaciones
+        for(int i = 0;
+            i < listReservaHabitaciones.size();
+            i++) {
+
+            Habitacion habitacion =
+                    listReservaHabitaciones.get(i);
+
+            double valorHabitacion =
+                    habitacion.getPrecioPorNoche() * noches;
+
+            valorHabitaciones =
+                    valorHabitaciones + valorHabitacion;
+        }
+
+        double valorServicios = 0;
+
+        // Calcular valor de todos los servicios
+        for(int i = 0;
+            i < listReservaServicios.size();
+            i++) {
+
+            ServicioAdicional servicio =
+                    listReservaServicios.get(i);
+
+            valorServicios =
+                    valorServicios + servicio.getPrecio();
+        }
+
+        valorTotal =
+                valorHabitaciones + valorServicios;
+
+        return valorTotal;
+    }
 
 
     public String getCodigoReserva() {
