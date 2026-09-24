@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
     public class Hotel {
+
         // Atributos de la clase Hotel
         private String nombreComercial;
         private String NIT;
@@ -16,6 +17,28 @@ import java.util.List;
         private List<Habitacion> listHotelHabitaciones;
         private List<Reserva> listHotelReservas;
         private List<ServicioAdicional> listHotelServicios;
+
+        /**
+         * Metodo constructor de la clase Hotel
+         */
+        public Hotel(String nombreComercial,
+                     String NIT,
+                     String direccion,
+                     String telefono,
+                     String paginaWeb) {
+
+            this.nombreComercial = nombreComercial;
+            this.NIT = NIT;
+            this.direccion = direccion;
+            this.telefono = telefono;
+            this.paginaWeb = paginaWeb;
+
+            this.listHotelHuespedes = new ArrayList<>();
+            this.listHotelHabitaciones = new ArrayList<>();
+            this.listHotelReservas = new ArrayList<>();
+            this.listHotelServicios = new ArrayList<>();
+        }
+
 
         // GETTERS Y SETTERS
 
