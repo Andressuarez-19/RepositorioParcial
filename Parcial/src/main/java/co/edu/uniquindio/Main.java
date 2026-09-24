@@ -198,5 +198,86 @@ public class Main {
                             "El huesped no existe."
                     );
                 }
+                // ==========================================
+                // 3. REGISTRAR RESERVA
+                // ==========================================
+
+            } else if(opcion == 3) {
+
+                try {
+
+                    SimpleDateFormat formato =
+                            new SimpleDateFormat("dd/MM/yyyy");
+
+                    String codigo =
+                            JOptionPane.showInputDialog(
+                                    "Ingrese el codigo de la reserva:"
+                            );
+
+                    String telefono =
+                            JOptionPane.showInputDialog(
+                                    "Ingrese el telefono del huesped:"
+                            );
+
+                    Huesped huesped =
+                            hotel.consultarHuespedPorTelefono(
+                                    telefono
+                            );
+
+                    if(huesped != null) {
+
+                        String fechaRealizacionTexto =
+                                JOptionPane.showInputDialog(
+                                        "Ingrese la fecha de realizacion (dd/MM/yyyy):"
+                                );
+
+                        Date fechaRealizacion =
+                                formato.parse(
+                                        fechaRealizacionTexto
+                                );
+
+                        String fechaEntradaTexto =
+                                JOptionPane.showInputDialog(
+                                        "Ingrese la fecha de entrada (dd/MM/yyyy):"
+                                );
+
+                        Date fechaEntrada =
+                                formato.parse(
+                                        fechaEntradaTexto
+                                );
+
+                        String fechaSalidaTexto =
+                                JOptionPane.showInputDialog(
+                                        "Ingrese la fecha de salida (dd/MM/yyyy):"
+                                );
+
+                        Date fechaSalida =
+                                formato.parse(
+                                        fechaSalidaTexto
+                                );
+
+                        String metodoPago =
+                                JOptionPane.showInputDialog(
+                                        """
+                                        METODO DE PAGO
+                                        
+                                        Tarjeta de credito
+                                        Transferencia bancaria
+                                        Efectivo
+                                        
+                                        Escriba el metodo:
+                                        """
+                                );
+
+                        Reserva reserva =
+                                new Reserva(
+                                        codigo,
+                                        fechaRealizacion,
+                                        fechaEntrada,
+                                        fechaSalida,
+                                        "Confirmada",
+                                        metodoPago,
+                                        huesped
+                                );
 
     }
