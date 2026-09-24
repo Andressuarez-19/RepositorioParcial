@@ -266,6 +266,31 @@ import java.util.List;
             return estado;
         }
 
+        /**
+         * Metodo que permite registrar un servicio adicional
+         */
+        public boolean registrarServicio(String codigo,
+                                         String nombre,
+                                         String descripcion,
+                                         double precio,
+                                         boolean disponible) {
+
+            ServicioAdicional servicio =
+                    buscarServicio(codigo);
+
+            if(servicio == null) {
+
+                ServicioAdicional nuevoServicio =
+                        new ServicioAdicional(codigo, nombre, descripcion, precio, disponible);
+
+                listHotelServicios.add(nuevoServicio);
+
+                return true;
+            }
+
+            return false;
+        }
+
 
         // GETTERS Y SETTERS
 
