@@ -39,6 +39,33 @@ import java.util.List;
             this.listHotelServicios = new ArrayList<>();
         }
 
+        /**
+         * Metodo que permite registrar un huesped
+         */
+        public boolean registrarHuesped(String nombreCompleto, String documentoIdentidad, String telefono, String correoElectronico, String paisProcedencia) {
+
+            Huesped huesped =
+                    consultarHuespedPorTelefono(telefono);
+
+            if(huesped == null) {
+
+                Huesped nuevoHuesped =
+                        new Huesped(
+                                nombreCompleto,
+                                documentoIdentidad,
+                                telefono,
+                                correoElectronico,
+                                paisProcedencia
+                        );
+
+                listHotelHuespedes.add(nuevoHuesped);
+
+                return true;
+            }
+
+            return false;
+        }
+
 
         // GETTERS Y SETTERS
 
