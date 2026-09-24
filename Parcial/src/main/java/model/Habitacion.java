@@ -1,6 +1,13 @@
 package model;
 
 public class Habitacion {
+    // Atributos
+    private int numeroHabitacion;
+    private int piso;
+    private String tipo;
+    private int capacidadMaxima;
+    private double precioPorNoche;
+    private String estado;
 
 
     // GETTERS Y SETTERS
