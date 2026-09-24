@@ -319,6 +319,24 @@ import java.util.List;
             return encontrado;
         }
 
+        /**
+         * Metodo que permite registrar una reserva
+         */
+        public boolean registrarReserva(Reserva reserva) {
+
+            Reserva encontrada =
+                    buscarReserva(reserva.getCodigoReserva());
+
+            if(encontrada == null) {
+
+                listHotelReservas.add(reserva);
+
+                return true;
+            }
+
+            return false;
+        }
+
 
         // GETTERS Y SETTERS
 
