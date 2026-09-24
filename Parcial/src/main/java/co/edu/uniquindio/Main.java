@@ -115,5 +115,59 @@ public class Main {
                             """
                     )
             );
+            // ==========================================
+            // 1. REGISTRAR HUESPED
+            // ==========================================
+
+            if(opcion == 1) {
+
+                String nombre =
+                        JOptionPane.showInputDialog(
+                                "Ingrese el nombre completo:"
+                        );
+
+                String documento =
+                        JOptionPane.showInputDialog(
+                                "Ingrese el documento:"
+                        );
+
+                String telefono =
+                        JOptionPane.showInputDialog(
+                                "Ingrese el telefono:"
+                        );
+
+                String correo =
+                        JOptionPane.showInputDialog(
+                                "Ingrese el correo:"
+                        );
+
+                String pais =
+                        JOptionPane.showInputDialog(
+                                "Ingrese el pais de procedencia:"
+                        );
+
+                boolean registrado =
+                        hotel.registrarHuesped(
+                                nombre,
+                                documento,
+                                telefono,
+                                correo,
+                                pais
+                        );
+
+                if(registrado) {
+
+                    JOptionPane.showMessageDialog(
+                            null,
+                            "Huesped registrado correctamente."
+                    );
+
+                } else {
+
+                    JOptionPane.showMessageDialog(
+                            null,
+                            "El huesped ya existe."
+                    );
+                }
 
     }
