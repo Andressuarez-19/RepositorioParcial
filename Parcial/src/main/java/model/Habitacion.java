@@ -8,6 +8,18 @@ public class Habitacion {
     private int capacidadMaxima;
     private double precioPorNoche;
     private String estado;
+    // Constructor
+    public Habitacion(int numeroHabitacion, int piso, String tipo,
+                      int capacidadMaxima, double precioPorNoche,
+                      String estado) {
+
+        this.numeroHabitacion = numeroHabitacion;
+        this.piso = piso;
+        this.tipo = tipo;
+        this.capacidadMaxima = capacidadMaxima;
+        this.precioPorNoche = precioPorNoche;
+        this.estado = estado;
+    }
 
 
     // GETTERS Y SETTERS
