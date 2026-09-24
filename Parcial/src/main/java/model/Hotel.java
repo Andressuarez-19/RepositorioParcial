@@ -292,6 +292,34 @@ import java.util.List;
         }
 
 
+        /**
+         * Metodo que permite buscar un servicio.
+         *
+         * Permite escribir S1 o s1.
+         */
+        public ServicioAdicional buscarServicio(String codigo) {
+
+            ServicioAdicional encontrado = null;
+
+            for(int i = 0;
+                i < listHotelServicios.size();
+                i++) {
+
+                ServicioAdicional servicio =
+                        listHotelServicios.get(i);
+
+                if(servicio.getCodigo()
+                        .equalsIgnoreCase(codigo)) {
+
+                    encontrado = servicio;
+                    break;
+                }
+            }
+
+            return encontrado;
+        }
+
+
         // GETTERS Y SETTERS
 
         public String getNombreComercial() {
