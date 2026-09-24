@@ -610,7 +610,20 @@ public class Main {
                     );
                 }
 
-                //
+                //==========================================
+                // 7. SALIR
+                // ==========================================
+
+            } else if(opcion == 7) {
+
+                JOptionPane.showMessageDialog(
+                        null,
+                        "Fin del servicio"
+                );
+            }
+        }
+    }
+}
 
 
     }
