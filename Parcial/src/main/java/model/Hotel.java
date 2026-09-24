@@ -190,6 +190,82 @@ import java.util.List;
             return disponible;
         }
 
+        /**
+         * Metodo que permite obtener el estado real
+         * de una habitacion dependiendo de sus reservas.
+         *
+         * Si la habitacion no tiene reservas:
+         * Disponible.
+         *
+         * Si tiene una o varias reservas:
+         * muestra las fechas de cada reserva.
+         */
+        public String obtenerEstadoHabitacion(
+                Habitacion habitacion) {
+
+            SimpleDateFormat formato =
+                    new SimpleDateFormat("dd/MM/yyyy");
+
+            String estado = "Disponible";
+
+            for(int i = 0;
+                i < listHotelReservas.size();
+                i++) {
+
+                Reserva reserva =
+                        listHotelReservas.get(i);
+
+                for(int j = 0;
+                    j < reserva
+                            .getListReservaHabitaciones()
+                            .size();
+                    j++) {
+
+                    Habitacion habitacionReservada =
+                            reserva
+                                    .getListReservaHabitaciones()
+                                    .get(j);
+
+                    if(habitacionReservada
+                            .getNumeroHabitacion()
+                            ==
+                            habitacion
+                                    .getNumeroHabitacion()) {
+
+                        String fechaEntrada =
+                                formato.format(
+                                        reserva.getFechaEntrada()
+                                );
+
+                        String fechaSalida =
+                                formato.format(
+                                        reserva.getFechaSalida()
+                                );
+
+                        if(estado.equals("Disponible")) {
+
+                            estado =
+                                    "Reservada para: " +
+                                            fechaEntrada +
+                                            " al " +
+                                            fechaSalida;
+
+                        } else {
+
+                            estado =
+                                    estado +
+                                            "\nReservada para: " +
+                                            fechaEntrada +
+                                            " al " +
+                                            fechaSalida;
+                        }
+                    }
+                }
+            }
+
+            return estado;
+        }
+
 
         // GETTERS Y SETTERS
 
