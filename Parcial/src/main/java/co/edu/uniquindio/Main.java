@@ -1,15 +1,14 @@
 package co.edu.uniquindio;
+import co.edu.uniquindio.model.Habitacion;
+import co.edu.uniquindio.model.Huesped;
+import co.edu.uniquindio.model.Hotel;
+import co.edu.uniquindio.model.Reserva;
+import co.edu.uniquindio.model.ServicioAdicional;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import javax.swing.*;
+
 public class Main {
-    static void main() {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        IO.println(String.format("Hello and welcome!"));
+    public static void main(String[] args) {
 
-        for (int i = 1; i <= 5; i++) {
-
-        }
-    }
+        Hotel hotel = new Hotel("StayPlus", "900123456", "Armenia", "3111234567", "www.stayplus.com");
 }
