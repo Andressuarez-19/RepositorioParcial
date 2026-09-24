@@ -109,7 +109,29 @@ import java.util.List;
 
             return false;
         }
+        /**
+         * Metodo que permite buscar una habitacion
+         */
+        public Habitacion buscarHabitacion(int numero) {
 
+            Habitacion encontrada = null;
+
+            for(int i = 0;
+                i < listHotelHabitaciones.size();
+                i++) {
+
+                Habitacion habitacion =
+                        listHotelHabitaciones.get(i);
+
+                if(habitacion.getNumeroHabitacion() == numero) {
+
+                    encontrada = habitacion;
+                    break;
+                }
+            }
+
+            return encontrada;
+        }
         // GETTERS Y SETTERS
 
         public String getNombreComercial() {
