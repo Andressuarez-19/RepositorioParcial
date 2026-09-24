@@ -94,5 +94,26 @@ public class Main {
                 25000,
                 true
         );
+        int opcion = 0;
+        while(opcion != 7) {
+
+            opcion = Integer.parseInt(
+                    JOptionPane.showInputDialog(
+                            null,
+                            """
+                            MENÚ
+                            
+                            1. Registrar huesped
+                            2. Buscar huesped
+                            3. Registrar reserva
+                            4. Consultar valor total de reserva
+                            5. Mostrar habitaciones
+                            6. Consultar ingresos por fecha
+                            7. Salir
+                            
+                            Seleccione una opcion:
+                            """
+                    )
+            );
 
     }
