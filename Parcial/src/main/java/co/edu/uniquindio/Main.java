@@ -361,6 +361,46 @@ public class Main {
                                             JOptionPane.YES_NO_OPTION
                                     );
                         }
+                        ==================================
+                        // REGISTRAR RESERVA
+                        // ==================================
+
+                        if(reserva
+                                .getListReservaHabitaciones()
+                                .size() > 0) {
+
+                            hotel.registrarReserva(reserva);
+
+                            JOptionPane.showMessageDialog(
+                                    null,
+                                    "Reserva registrada correctamente."
+                            );
+
+                        } else {
+
+                            JOptionPane.showMessageDialog(
+                                    null,
+                                    "La reserva debe tener " +
+                                            "por lo menos una habitacion."
+                            );
+                        }
+
+                    } else {
+
+                        JOptionPane.showMessageDialog(
+                                null,
+                                "El huesped no existe."
+                        );
+                    }
+
+                } catch(ParseException e) {
+
+                    JOptionPane.showMessageDialog(
+                            null,
+                            "Formato de fecha incorrecto.\n" +
+                                    "Use el formato: dd/MM/yyyy"
+                    );
+                }
 
 
     }
