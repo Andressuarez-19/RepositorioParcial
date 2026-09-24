@@ -38,4 +38,96 @@ public class Reserva {
         this.metodoPago = metodoPago;
         this.huesped = huesped;
         this.valorTotal = 0;
+
+        this.listReservaHabitaciones = new ArrayList<>();
+        this.listReservaServicios = new ArrayList<>();
+    }
+
+
+    public String getCodigoReserva() {
+        return codigoReserva;
+    }
+
+    public void setCodigoReserva(String codigoReserva) {
+        this.codigoReserva = codigoReserva;
+    }
+
+    public Date getFechaRealizacion() {
+        return fechaRealizacion;
+    }
+
+    public void setFechaRealizacion(Date fechaRealizacion) {
+        this.fechaRealizacion = fechaRealizacion;
+    }
+
+    public Date getFechaEntrada() {
+        return fechaEntrada;
+    }
+
+    public void setFechaEntrada(Date fechaEntrada) {
+        this.fechaEntrada = fechaEntrada;
+    }
+
+    public Date getFechaSalida() {
+        return fechaSalida;
+    }
+
+    public void setFechaSalida(Date fechaSalida) {
+        this.fechaSalida = fechaSalida;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public String getMetodoPago() {
+        return metodoPago;
+    }
+
+    public void setMetodoPago(String metodoPago) {
+        this.metodoPago = metodoPago;
+    }
+
+    public double getValorTotal() {
+        return valorTotal;
+    }
+
+    public void setValorTotal(double valorTotal) {
+        this.valorTotal = valorTotal;
+    }
+
+    public Huesped getHuesped() {
+        return huesped;
+    }
+
+    public void setHuesped(Huesped huesped) {
+        this.huesped = huesped;
+    }
+
+    public List<Habitacion> getListReservaHabitaciones() {
+        return listReservaHabitaciones;
+    }
+
+    public void setListReservaHabitaciones(
+            List<Habitacion> listReservaHabitaciones) {
+
+        this.listReservaHabitaciones =
+                listReservaHabitaciones;
+    }
+
+    public List<ServicioAdicional> getListReservaServicios() {
+        return listReservaServicios;
+    }
+
+    public void setListReservaServicios(
+            List<ServicioAdicional> listReservaServicios) {
+
+        this.listReservaServicios =
+                listReservaServicios;
+    }
+
 }
