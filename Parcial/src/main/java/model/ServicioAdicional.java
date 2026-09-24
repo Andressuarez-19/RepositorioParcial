@@ -2,7 +2,18 @@ package model;
 
 public class ServicioAdicional {
 
+    //ATRIBUTOS
+
+    private String codigo;
+    private String nombre;
+    private String descripcion;
+    private double precio;
+    private boolean disponible;
+
+
+
     // GETTER Y SETTER
+
     public String getCodigo() {
         return codigo;
     }
