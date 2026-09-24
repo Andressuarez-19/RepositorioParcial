@@ -42,6 +42,19 @@ public class Reserva {
         this.listReservaHabitaciones = new ArrayList<>();
         this.listReservaServicios = new ArrayList<>();
     }
+    /**
+     * Metodo que permite calcular la cantidad de noches de la reserva.
+     */
+    public long calcularCantidadNoches() {
+
+        long diferencia =
+                fechaSalida.getTime() - fechaEntrada.getTime();
+
+        long noches =
+                diferencia / (1000 * 60 * 60 * 24);
+
+        return noches;
+    }
 
 
     public String getCodigoReserva() {
