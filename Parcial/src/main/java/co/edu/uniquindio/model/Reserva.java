@@ -130,4 +130,18 @@ public class Reserva {
                 listReservaServicios;
     }
 
+    @Override
+    public String toString() {
+
+        return "Reserva{" +
+                "codigoReserva='" + codigoReserva + '\'' +
+                ", fechaRealizacion=" + fechaRealizacion +
+                ", fechaEntrada=" + fechaEntrada +
+                ", fechaSalida=" + fechaSalida +
+                ", estado='" + estado + '\'' +
+                ", metodoPago='" + metodoPago + '\'' +
+                ", valorTotal=" + valorTotal +
+                '}';
+    }
+
 }
