@@ -4,6 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
     public class Hotel {
+        // Atributos de la clase Hotel
+        private String nombreComercial;
+        private String NIT;
+        private String direccion;
+        private String telefono;
+        private String paginaWeb;
+
+        // Relaciones de la clase Hotel
+        private List<Huesped> listHotelHuespedes;
+        private List<Habitacion> listHotelHabitaciones;
+        private List<Reserva> listHotelReservas;
+        private List<ServicioAdicional> listHotelServicios;
 
         // GETTERS Y SETTERS
 
