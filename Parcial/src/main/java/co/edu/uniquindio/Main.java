@@ -535,6 +535,43 @@ public class Main {
                     );
                 }
 
+                //==========================================
+                // 5. MOSTRAR HABITACIONES
+                // ==========================================
+
+            } else if(opcion == 5) {
+
+                String mensaje = "";
+
+                for(int i = 0;
+                    i < hotel
+                            .getListHotelHabitaciones()
+                            .size();
+                    i++) {
+
+                    Habitacion habitacion =
+                            hotel
+                                    .getListHotelHabitaciones()
+                                    .get(i);
+
+                    mensaje =
+                            mensaje +
+                                    "Habitacion: " +
+                                    habitacion.getNumeroHabitacion() +
+                                    "\nTipo: " +
+                                    habitacion.getTipo() +
+                                    "\nPrecio por noche: $" +
+                                    habitacion.getPrecioPorNoche() +
+                                    "\nEstado: " +
+                                    hotel.obtenerEstadoHabitacion(habitacion) +
+                                    "\n\n";
+                }
+
+                JOptionPane.showMessageDialog(
+                        null,
+                        mensaje
+                );
+
                 //
 
 
