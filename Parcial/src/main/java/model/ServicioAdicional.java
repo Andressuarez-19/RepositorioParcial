@@ -10,6 +10,7 @@ public class ServicioAdicional {
     private double precio;
     private boolean disponible;
 
+    // CONSTRUCTOR
     public ServicioAdicional(String codigo, String nombre, String descripcion, double precio, boolean disponible) {
 
         this.codigo = codigo;
@@ -19,6 +20,9 @@ public class ServicioAdicional {
         this.disponible = disponible;
     }
 
+    public boolean estaDisponible() {
+        return disponible;
+    }
     // GETTER Y SETTER
 
     public String getCodigo() {
