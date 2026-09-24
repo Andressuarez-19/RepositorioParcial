@@ -81,5 +81,14 @@ public class Huesped {
     public void setPaisProcedencia(String paisProcedencia) {
         this.paisProcedencia = paisProcedencia;
     }
-
+    @Override
+    public String toString() {
+        return "Huesped{" +
+                "nombreCompleto='" + nombreCompleto + '\'' +
+                ", documentoIdentidad='" + documentoIdentidad + '\'' +
+                ", telefono='" + telefono + '\'' +
+                ", correoElectronico='" + correoElectronico + '\'' +
+                ", paisProcedencia='" + paisProcedencia + '\'' +
+                '}';
+    }
 }
