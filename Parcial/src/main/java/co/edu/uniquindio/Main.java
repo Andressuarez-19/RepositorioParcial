@@ -279,5 +279,88 @@ public class Main {
                                         metodoPago,
                                         huesped
                                 );
+                        // ==================================
+                        // AGREGAR HABITACIONES
+                        // ==================================
+
+                        int agregarHabitacion =
+                                JOptionPane.showConfirmDialog(
+                                        null,
+                                        "¿Desea agregar una habitacion?",
+                                        "Habitaciones",
+                                        JOptionPane.YES_NO_OPTION
+                                );
+
+                        while(agregarHabitacion ==
+                                JOptionPane.YES_OPTION) {
+
+                            int numeroHabitacion =
+                                    Integer.parseInt(
+                                            JOptionPane.showInputDialog(
+                                                    """
+                                                    HABITACIONES
+                                                    
+                                                    101 - Individual - $80.000
+                                                    102 - Individual - $80.000
+                                                    201 - Doble - $120.000
+                                                    202 - Doble - $120.000
+                                                    301 - Suite - $200.000
+                                                    
+                                                    Ingrese el numero de habitacion:
+                                                    """
+                                            )
+                                    );
+
+                            Habitacion habitacion =
+                                    hotel.buscarHabitacion(
+                                            numeroHabitacion
+                                    );
+
+                            if(habitacion != null) {
+
+                                boolean disponible =
+                                        hotel.verificarDisponibilidadHabitacion(
+                                                habitacion,
+                                                fechaEntrada,
+                                                fechaSalida
+                                        );
+
+                                if(disponible) {
+
+                                    reserva
+                                            .getListReservaHabitaciones()
+                                            .add(habitacion);
+
+                                    JOptionPane.showMessageDialog(
+                                            null,
+                                            "Habitacion agregada correctamente."
+                                    );
+
+                                } else {
+
+                                    JOptionPane.showMessageDialog(
+                                            null,
+                                            "La habitacion no esta disponible " +
+                                                    "para las fechas seleccionadas."
+                                    );
+                                }
+
+                            } else {
+
+                                JOptionPane.showMessageDialog(
+                                        null,
+                                        "La habitacion no existe."
+                                );
+                            }
+
+                            agregarHabitacion =
+                                    JOptionPane.showConfirmDialog(
+                                            null,
+                                            "¿Desea agregar otra habitacion?",
+                                            "Habitaciones",
+                                            JOptionPane.YES_NO_OPTION
+                                    );
+                        }
+
 
     }
