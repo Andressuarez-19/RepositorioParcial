@@ -65,6 +65,30 @@ import java.util.List;
 
             return false;
         }
+        /**
+         * Metodo que permite buscar un huesped
+         * por medio de su telefono
+         */
+        public Huesped consultarHuespedPorTelefono(String telefono) {
+
+            Huesped encontrado = null;
+
+            for(int i = 0;
+                i < listHotelHuespedes.size();
+                i++) {
+
+                Huesped huesped =
+                        listHotelHuespedes.get(i);
+
+                if(huesped.getTelefono().equals(telefono)) {
+
+                    encontrado = huesped;
+                    break;
+                }
+            }
+
+            return encontrado;
+        }
 
 
         // GETTERS Y SETTERS
