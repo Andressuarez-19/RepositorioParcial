@@ -168,6 +168,35 @@ public class Main {
                             null,
                             "El huesped ya existe."
                     );
+                }         // ==========================================
+                // 2. BUSCAR HUESPED
+                // ==========================================
+
+            } else if(opcion == 2) {
+
+                String telefono =
+                        JOptionPane.showInputDialog(
+                                "Ingrese el telefono:"
+                        );
+
+                Huesped huesped =
+                        hotel.consultarHuespedPorTelefono(
+                                telefono
+                        );
+
+                if(huesped != null) {
+
+                    JOptionPane.showMessageDialog(
+                            null,
+                            huesped.toString()
+                    );
+
+                } else {
+
+                    JOptionPane.showMessageDialog(
+                            null,
+                            "El huesped no existe."
+                    );
                 }
 
     }
