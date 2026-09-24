@@ -23,6 +23,25 @@ public class Huesped {
         this.correoElectronico = correoElectronico;
         this.paisProcedencia = paisProcedencia;
     }
+    /**
+     * Metodo que verifica si el telefono
+     * corresponde a un numero perfecto
+     */
+    public boolean esNumeroTelefonoPerfecto() {
+
+        int numero = Integer.parseInt(telefono);
+        int suma = 0;
+
+        for(int i = 1; i < numero; i++) {
+
+            if(numero % i == 0) {
+                suma = suma + i;
+            }
+        }
+
+        return suma == numero;
+    }
+
     public String getNombreCompleto() {
         return nombreCompleto;
     }
