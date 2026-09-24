@@ -22,7 +22,8 @@ public class Habitacion {
         this.estado = estado;
     }
 
-    // Metodo para verificar disponibilidad
+    /** Metodo para verificar disponibilidad
+     */
     public boolean verificarDisponibilidad() {
         return estado.equals("Disponible");
     }

@@ -19,6 +19,8 @@ public class ServicioAdicional {
         this.precio = precio;
         this.disponible = disponible;
     }
+     /** Metodo que permite saber si esta disponible
+         */
 
     public boolean estaDisponible() {
         return disponible;
