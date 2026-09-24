@@ -424,6 +424,118 @@ public class Main {
 
                     long noches =
                             reserva.calcularCantidadNoches();
+                    // ==================================
+                    // MOSTRAR HABITACIONES
+                    // ==================================
+
+                    String habitaciones = "";
+
+                    for(int i = 0;
+                        i < reserva
+                                .getListReservaHabitaciones()
+                                .size();
+                        i++) {
+
+                        Habitacion habitacion =
+                                reserva
+                                        .getListReservaHabitaciones()
+                                        .get(i);
+
+                        habitaciones =
+                                habitaciones +
+                                        "Habitacion: " +
+                                        habitacion.getNumeroHabitacion() +
+                                        "\nTipo: " +
+                                        habitacion.getTipo() +
+                                        "\nPrecio por noche: $" +
+                                        habitacion.getPrecioPorNoche() +
+                                        "\n\n";
+                    }
+
+                    // ==================================
+                    // MOSTRAR SERVICIOS
+                    // ==================================
+
+                    String servicios = "";
+
+                    if(reserva
+                            .getListReservaServicios()
+                            .size() == 0) {
+
+                        servicios =
+                                "No se tomaron servicios adicionales.\n";
+
+                    } else {
+
+                        for(int i = 0;
+                            i < reserva
+                                    .getListReservaServicios()
+                                    .size();
+                            i++) {
+
+                            ServicioAdicional servicio =
+                                    reserva
+                                            .getListReservaServicios()
+                                            .get(i);
+
+                            servicios =
+                                    servicios +
+                                            "Codigo: " +
+                                            servicio.getCodigo() +
+                                            "\nNombre: " +
+                                            servicio.getNombre() +
+                                            "\nPrecio: $" +
+                                            servicio.getPrecio() +
+                                            "\n\n";
+                        }
+                    }
+
+                    // ==================================
+                    // MOSTRAR INFORMACION
+                    // ==================================
+
+                    JOptionPane.showMessageDialog(
+                            null,
+                            "RESERVA\n\n" +
+
+                                    "Codigo: " +
+                                    reserva.getCodigoReserva() +
+
+                                    "\nHuesped: " +
+                                    reserva.getHuesped()
+                                            .getNombreCompleto() +
+
+                                    "\n\nHABITACIONES\n" +
+                                    habitaciones +
+
+                                    "SERVICIOS ADICIONALES\n" +
+                                    servicios +
+
+                                    "Fecha de entrada: " +
+                                    reserva.getFechaEntrada() +
+
+                                    "\nFecha de salida: " +
+                                    reserva.getFechaSalida() +
+
+                                    "\nNoches: " +
+                                    noches +
+
+                                    "\nMetodo de pago: " +
+                                    reserva.getMetodoPago() +
+
+                                    "\n\nVALOR TOTAL: $" +
+                                    total
+                    );
+
+                } else {
+
+                    JOptionPane.showMessageDialog(
+                            null,
+                            "La reserva no existe."
+                    );
+                }
+
+                //
 
 
     }
