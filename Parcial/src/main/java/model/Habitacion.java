@@ -8,6 +8,7 @@ public class Habitacion {
     private int capacidadMaxima;
     private double precioPorNoche;
     private String estado;
+
     // Constructor
     public Habitacion(int numeroHabitacion, int piso, String tipo,
                       int capacidadMaxima, double precioPorNoche,
@@ -19,6 +20,11 @@ public class Habitacion {
         this.capacidadMaxima = capacidadMaxima;
         this.precioPorNoche = precioPorNoche;
         this.estado = estado;
+    }
+
+    // Metodo para verificar disponibilidad
+    public boolean verificarDisponibilidad() {
+        return estado.equals("Disponible");
     }
 
 
