@@ -364,6 +364,24 @@ import java.util.List;
         }
 
 
+        /**
+         * Metodo que permite consultar el valor
+         * total de una reserva
+         */
+        public double consultarValorTotalReserva(String codigo) {
+
+            Reserva reserva =
+                    buscarReserva(codigo);
+
+            if(reserva != null) {
+
+                return reserva.calcularValorTotal();
+            }
+
+            return 0;
+        }
+
+
         // GETTERS Y SETTERS
 
         public String getNombreComercial() {
