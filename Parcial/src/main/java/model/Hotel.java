@@ -65,6 +65,7 @@ import java.util.List;
 
             return false;
         }
+
         /**
          * Metodo que permite buscar un huesped
          * por medio de su telefono
@@ -89,6 +90,7 @@ import java.util.List;
 
             return encontrado;
         }
+
         /**
          * Metodo que permite registrar una habitacion
          */
@@ -109,6 +111,7 @@ import java.util.List;
 
             return false;
         }
+
         /**
          * Metodo que permite buscar una habitacion
          */
@@ -132,6 +135,62 @@ import java.util.List;
 
             return encontrada;
         }
+
+        /**
+         * Metodo que permite verificar si una habitacion
+         * esta disponible para unas fechas determinadas.
+         */
+        public boolean verificarDisponibilidadHabitacion(
+                Habitacion habitacion,
+                Date fechaEntrada,
+                Date fechaSalida) {
+
+            boolean disponible = true;
+
+            for(int i = 0;
+                i < listHotelReservas.size();
+                i++) {
+
+                Reserva reserva =
+                        listHotelReservas.get(i);
+
+                for(int j = 0;
+                    j < reserva
+                            .getListReservaHabitaciones()
+                            .size();
+                    j++) {
+
+                    Habitacion habitacionReservada =
+                            reserva
+                                    .getListReservaHabitaciones()
+                                    .get(j);
+
+                    if(habitacionReservada.getNumeroHabitacion()
+                            == habitacion.getNumeroHabitacion()) {
+
+                        Date entradaReserva =
+                                reserva.getFechaEntrada();
+
+                        Date salidaReserva =
+                                reserva.getFechaSalida();
+
+                        boolean seCruzanFechas =
+                                fechaEntrada.before(salidaReserva)
+                                        &&
+                                        fechaSalida.after(entradaReserva);
+
+                        if(seCruzanFechas) {
+
+                            disponible = false;
+                        }
+                    }
+                }
+            }
+
+            return disponible;
+        }
+
+
         // GETTERS Y SETTERS
 
         public String getNombreComercial() {
