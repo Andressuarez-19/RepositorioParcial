@@ -401,6 +401,29 @@ public class Main {
                                     "Use el formato: dd/MM/yyyy"
                     );
                 }
+                //==========================================
+                // 4. CONSULTAR VALOR TOTAL
+                // ==========================================
+
+            } else if(opcion == 4) {
+
+                String codigo =
+                        JOptionPane.showInputDialog(
+                                "Ingrese el codigo de la reserva:"
+                        );
+
+                Reserva reserva =
+                        hotel.buscarReserva(codigo);
+
+                if(reserva != null) {
+
+                    double total =
+                            hotel.consultarValorTotalReserva(
+                                    codigo
+                            );
+
+                    long noches =
+                            reserva.calcularCantidadNoches();
 
 
     }
