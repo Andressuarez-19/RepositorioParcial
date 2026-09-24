@@ -338,6 +338,32 @@ import java.util.List;
         }
 
 
+        /**
+         * Metodo que permite buscar una reserva
+         */
+        public Reserva buscarReserva(String codigo) {
+
+            Reserva encontrada = null;
+
+            for(int i = 0;
+                i < listHotelReservas.size();
+                i++) {
+
+                Reserva reserva =
+                        listHotelReservas.get(i);
+
+                if(reserva.getCodigoReserva()
+                        .equals(codigo)) {
+
+                    encontrada = reserva;
+                    break;
+                }
+            }
+
+            return encontrada;
+        }
+
+
         // GETTERS Y SETTERS
 
         public String getNombreComercial() {
