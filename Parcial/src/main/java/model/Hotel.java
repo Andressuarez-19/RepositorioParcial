@@ -89,7 +89,26 @@ import java.util.List;
 
             return encontrado;
         }
+        /**
+         * Metodo que permite registrar una habitacion
+         */
+        public boolean registrarHabitacion(int numeroHabitacion, int piso, String tipo, int capacidadMaxima, double precioPorNoche, String estado) {
 
+            Habitacion habitacion =
+                    buscarHabitacion(numeroHabitacion);
+
+            if(habitacion == null) {
+
+                Habitacion nuevaHabitacion =
+                        new Habitacion(numeroHabitacion, piso, tipo, capacidadMaxima, precioPorNoche, estado);
+
+                listHotelHabitaciones.add(nuevaHabitacion);
+
+                return true;
+            }
+
+            return false;
+        }
 
         // GETTERS Y SETTERS
 
