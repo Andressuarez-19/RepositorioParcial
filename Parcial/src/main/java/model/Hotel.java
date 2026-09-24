@@ -381,6 +381,32 @@ import java.util.List;
             return 0;
         }
 
+        /**
+         * Metodo que permite consultar los ingresos
+         * de las reservas realizadas en una fecha
+         */
+        public double consultarIngresosPorFecha(Date fecha) {
+
+            double total = 0;
+
+            for(int i = 0;
+                i < listHotelReservas.size();
+                i++) {
+
+                Reserva reserva =
+                        listHotelReservas.get(i);
+
+                if(reserva.getFechaRealizacion()
+                        .equals(fecha)) {
+
+                    total =
+                            total +
+                                    reserva.calcularValorTotal();
+                }
+            }
+
+            return total;
+        }
 
         // GETTERS Y SETTERS
 
