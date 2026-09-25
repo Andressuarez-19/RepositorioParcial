@@ -1,0 +1,80 @@
+package co.edu.uniquindio.model;
+
+public class ServicioAdicional {
+
+    //ATRIBUTOS
+
+    private String codigo;
+    private String nombre;
+    private String descripcion;
+    private double precio;
+    private boolean disponible;
+
+    // CONSTRUCTOR
+    public ServicioAdicional(String codigo, String nombre, String descripcion, double precio, boolean disponible) {
+
+        this.codigo = codigo;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.precio = precio;
+        this.disponible = disponible;
+    }
+    /** Metodo que permite saber si esta disponible
+     */
+
+    public boolean estaDisponible() {
+        return disponible;
+    }
+    // GETTER Y SETTER
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(double precio) {
+        this.precio = precio;
+    }
+
+    public boolean isDisponible() {
+        return disponible;
+    }
+
+    public void setDisponible(boolean disponible) {
+        this.disponible = disponible;
+    }
+
+    @Override
+    public String toString() {
+        return "ServicioAdicional{" +
+                "codigo='" + codigo + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", descripcion='" + descripcion + '\'' +
+                ", precio=" + precio +
+                ", disponible=" + disponible +
+                '}';
+    }
+}
