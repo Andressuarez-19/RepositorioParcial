@@ -36,7 +36,7 @@ public class ServicioAdicional {
      */
     public void disminuirDisponibilidad() {
 
-        if(disponibilidad > 0) {
+        if (disponibilidad > 0) {
 
             disponibilidad--;
         }
