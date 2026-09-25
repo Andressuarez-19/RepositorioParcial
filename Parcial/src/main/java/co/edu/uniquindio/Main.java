@@ -187,8 +187,8 @@ public class Main {
                 }
 
                 // ==========================================
-                // 2. BUSCAR HUESPED
-                // ==========================================
+// 2. BUSCAR HUESPED
+// ==========================================
 
             } else if(opcion == 2) {
 
@@ -204,9 +204,24 @@ public class Main {
 
                 if(huesped != null) {
 
+                    String resultadoNumeroPerfecto;
+
+                    if(huesped.esNumeroTelefonoPerfecto()) {
+
+                        resultadoNumeroPerfecto =
+                                "El numero de telefono ES un numero perfecto.";
+
+                    } else {
+
+                        resultadoNumeroPerfecto =
+                                "El numero de telefono NO es un numero perfecto.";
+                    }
+
                     JOptionPane.showMessageDialog(
                             null,
-                            huesped.toString()
+                            huesped.toString() +
+                                    "\n\n" +
+                                    resultadoNumeroPerfecto
                     );
 
                 } else {
