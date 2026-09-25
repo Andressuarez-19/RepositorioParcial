@@ -6,6 +6,7 @@ import java.util.List;
 
 public class Reserva {
 
+    // Atributos de la clase Reserva
     private String codigoReserva;
     private Date fechaRealizacion;
     private Date fechaEntrada;
@@ -14,11 +15,14 @@ public class Reserva {
     private String metodoPago;
     private double valorTotal;
 
+    // Relaciones de la clase Reserva
     private Huesped huesped;
-
     private List<Habitacion> listReservaHabitaciones;
     private List<ServicioAdicional> listReservaServicios;
 
+    /**
+     * Metodo constructor de la clase Reserva
+     */
     public Reserva(String codigoReserva,
                    Date fechaRealizacion,
                    Date fechaEntrada,
@@ -34,47 +38,39 @@ public class Reserva {
         this.estado = estado;
         this.metodoPago = metodoPago;
         this.huesped = huesped;
-
         this.valorTotal = 0;
 
-        this.listReservaHabitaciones =
-                new ArrayList<>();
-
-        this.listReservaServicios =
-                new ArrayList<>();
+        this.listReservaHabitaciones = new ArrayList<>();
+        this.listReservaServicios = new ArrayList<>();
     }
 
     /**
-     * Metodo que calcula la cantidad
+     * Metodo que permite calcular la cantidad
      * de noches de la reserva.
      */
     public long calcularCantidadNoches() {
 
         long diferencia =
-                fechaSalida.getTime()
-                        - fechaEntrada.getTime();
+                fechaSalida.getTime() - fechaEntrada.getTime();
 
         long noches =
-                diferencia /
-                        (1000 * 60 * 60 * 24);
+                diferencia / (1000 * 60 * 60 * 24);
 
         return noches;
     }
 
     /**
-     * Metodo que calcula el valor total
-     * de la reserva.
+     * Metodo que permite calcular el valor
      */
     public double calcularValorTotal() {
 
-        long noches =
-                calcularCantidadNoches();
+        long noches = calcularCantidadNoches();
 
         double valorHabitaciones = 0;
 
-        // ==================================
-        // VALOR DE LAS HABITACIONES
-        // ==================================
+        // ==========================================
+        // CALCULAR VALOR DE LAS HABITACIONES
+        // ==========================================
 
         for(int i = 0;
             i < listReservaHabitaciones.size();
@@ -84,17 +80,15 @@ public class Reserva {
                     listReservaHabitaciones.get(i);
 
             double valorHabitacion =
-                    habitacion.getPrecioPorNoche()
-                            * noches;
+                    habitacion.getPrecioPorNoche() * noches;
 
             valorHabitaciones =
-                    valorHabitaciones
-                            + valorHabitacion;
+                    valorHabitaciones + valorHabitacion;
         }
 
-        // ==================================
-        // VALOR DE LOS SERVICIOS
-        // ==================================
+        // ==========================================
+        // CALCULAR VALOR DE LOS SERVICIOS
+        // ==========================================
 
         double valorServicios = 0;
 
@@ -106,17 +100,18 @@ public class Reserva {
                     listReservaServicios.get(i);
 
             double valorServicio =
-                    servicio.getPrecio()
-                            * noches;
+                    servicio.getPrecio() * noches;
 
             valorServicios =
-                    valorServicios
-                            + valorServicio;
+                    valorServicios + valorServicio;
         }
 
+        // ==========================================
+        // CALCULAR VALOR TOTAL
+        // ==========================================
+
         valorTotal =
-                valorHabitaciones
-                        + valorServicios;
+                valorHabitaciones + valorServicios;
 
         return valorTotal;
     }
