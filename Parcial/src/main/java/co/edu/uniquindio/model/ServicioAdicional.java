@@ -1,4 +1,5 @@
-package uniquindio.edu.co.model;
+package co.edu.uniquindio.model;
+
 
 public class ServicioAdicional {
 

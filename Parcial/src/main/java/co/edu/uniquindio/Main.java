@@ -10,7 +10,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-
 public class Main {
 
     public static void main(String[] args) {
@@ -74,6 +73,7 @@ public class Main {
 
         // ==========================================
         // SERVICIOS ADICIONALES
+        // TODOS COMIENZAN CON 5 DISPONIBLES
         // ==========================================
 
         hotel.registrarServicio(
@@ -81,7 +81,7 @@ public class Main {
                 "Restaurante",
                 "Servicio de restaurante",
                 30000,
-                true
+                5
         );
 
         hotel.registrarServicio(
@@ -89,7 +89,7 @@ public class Main {
                 "Lavanderia",
                 "Servicio de lavanderia",
                 15000,
-                true
+                5
         );
 
         hotel.registrarServicio(
@@ -97,7 +97,7 @@ public class Main {
                 "Transporte",
                 "Servicio de transporte",
                 20000,
-                true
+                5
         );
 
         hotel.registrarServicio(
@@ -105,31 +105,34 @@ public class Main {
                 "Servicio a la habitacion",
                 "Servicio a la habitacion",
                 25000,
-                true
+                5
         );
 
         int opcion = 0;
 
-        while(opcion != 7) {
+        while(opcion != 9) {
 
-            opcion = Integer.parseInt(
-                    JOptionPane.showInputDialog(
-                            null,
-                            """
-                            MENÚ
-                            
-                            1. Registrar huesped
-                            2. Buscar huesped
-                            3. Registrar reserva
-                            4. Consultar valor total de reserva
-                            5. Mostrar habitaciones
-                            6. Consultar ingresos por fecha
-                            7. Salir
-                            
-                            Seleccione una opcion:
-                            """
-                    )
-            );
+            opcion =
+                    Integer.parseInt(
+                            JOptionPane.showInputDialog(
+                                    null,
+                                    """
+                                    MENÚ
+                                    
+                                    1. Registrar huesped
+                                    2. Buscar huesped
+                                    3. Registrar reserva
+                                    4. Agregar servicios a una reserva
+                                    5. Mostrar servicios adicionales
+                                    6. Consultar valor total de reserva
+                                    7. Mostrar habitaciones
+                                    8. Consultar ingresos por fecha
+                                    9. Salir
+                                    
+                                    Seleccione una opcion:
+                                    """
+                            )
+                    );
 
             // ==========================================
             // 1. REGISTRAR HUESPED
@@ -187,8 +190,8 @@ public class Main {
                 }
 
                 // ==========================================
-// 2. BUSCAR HUESPED
-// ==========================================
+                // 2. BUSCAR HUESPED
+                // ==========================================
 
             } else if(opcion == 2) {
 
@@ -204,24 +207,24 @@ public class Main {
 
                 if(huesped != null) {
 
-                    String resultadoNumeroPerfecto;
+                    String numeroPerfecto;
 
                     if(huesped.esNumeroTelefonoPerfecto()) {
 
-                        resultadoNumeroPerfecto =
-                                "El numero de telefono ES un numero perfecto.";
+                        numeroPerfecto =
+                                "El numero de telefono SI es un numero perfecto.";
 
                     } else {
 
-                        resultadoNumeroPerfecto =
+                        numeroPerfecto =
                                 "El numero de telefono NO es un numero perfecto.";
                     }
 
                     JOptionPane.showMessageDialog(
                             null,
-                            huesped.toString() +
-                                    "\n\n" +
-                                    resultadoNumeroPerfecto
+                            huesped.toString()
+                                    + "\n\n"
+                                    + numeroPerfecto
                     );
 
                 } else {
@@ -241,7 +244,9 @@ public class Main {
                 try {
 
                     SimpleDateFormat formato =
-                            new SimpleDateFormat("dd/MM/yyyy");
+                            new SimpleDateFormat(
+                                    "dd/MM/yyyy"
+                            );
 
                     String codigo =
                             JOptionPane.showInputDialog(
@@ -398,69 +403,6 @@ public class Main {
                         }
 
                         // ==================================
-                        // AGREGAR SERVICIOS
-                        // ==================================
-
-                        int agregarServicio =
-                                JOptionPane.showConfirmDialog(
-                                        null,
-                                        "¿Desea agregar servicios adicionales?",
-                                        "Servicios",
-                                        JOptionPane.YES_NO_OPTION
-                                );
-
-                        while(agregarServicio ==
-                                JOptionPane.YES_OPTION) {
-
-                            String codigoServicio =
-                                    JOptionPane.showInputDialog(
-                                            """
-                                            SERVICIOS
-                                            
-                                            S1 - Restaurante - $30.000
-                                            S2 - Lavanderia - $15.000
-                                            S3 - Transporte - $20.000
-                                            S4 - Servicio a la habitacion - $25.000
-                                            
-                                            Ingrese el codigo:
-                                            """
-                                    );
-
-                            ServicioAdicional servicio =
-                                    hotel.buscarServicio(
-                                            codigoServicio
-                                    );
-
-                            if(servicio != null &&
-                                    servicio.estaDisponible()) {
-
-                                reserva
-                                        .getListReservaServicios()
-                                        .add(servicio);
-
-                                JOptionPane.showMessageDialog(
-                                        null,
-                                        "Servicio agregado correctamente."
-                                );
-
-                            } else {
-
-                                JOptionPane.showMessageDialog(
-                                        null,
-                                        "El servicio no existe o no esta disponible."
-                                );
-                            }
-
-                            agregarServicio =
-                                    JOptionPane.showConfirmDialog(
-                                            null,
-                                            "¿Desea agregar otro servicio?",
-                                            "Servicios",
-                                            JOptionPane.YES_NO_OPTION
-                                    );
-                        }
-
-                        // ==================================
                         // REGISTRAR RESERVA
                         // ==================================
 
@@ -502,10 +444,142 @@ public class Main {
                 }
 
                 // ==========================================
-                // 4. CONSULTAR VALOR TOTAL
+                // 4. AGREGAR SERVICIOS A UNA RESERVA
                 // ==========================================
 
             } else if(opcion == 4) {
+
+                String codigoReserva =
+                        JOptionPane.showInputDialog(
+                                "Ingrese el codigo de la reserva:"
+                        );
+
+                Reserva reserva =
+                        hotel.buscarReserva(
+                                codigoReserva
+                        );
+
+                if(reserva != null) {
+
+                    JOptionPane.showMessageDialog(
+                            null,
+                            "Noches de la reserva: "
+                                    + reserva.calcularCantidadNoches()
+                                    + "\n\n"
+                                    + hotel.mostrarServiciosAdicionales()
+                    );
+
+                    int agregarServicio =
+                            JOptionPane.showConfirmDialog(
+                                    null,
+                                    "¿Desea agregar un servicio?",
+                                    "Servicios adicionales",
+                                    JOptionPane.YES_NO_OPTION
+                            );
+
+                    while(agregarServicio ==
+                            JOptionPane.YES_OPTION) {
+
+                        String codigoServicio =
+                                JOptionPane.showInputDialog(
+                                        """
+                                        SERVICIOS
+                                        
+                                        Escriba el codigo del servicio:
+                                        
+                                        S1 - Restaurante
+                                        S2 - Lavanderia
+                                        S3 - Transporte
+                                        S4 - Servicio a la habitacion
+                                        """
+                                );
+
+                        ServicioAdicional servicio =
+                                hotel.buscarServicio(
+                                        codigoServicio
+                                );
+
+                        if(servicio != null) {
+
+                            if(servicio.estaDisponible()) {
+
+                                boolean agregado =
+                                        hotel.agregarServicioAReserva(
+                                                codigoReserva,
+                                                codigoServicio
+                                        );
+
+                                if(agregado) {
+
+                                    JOptionPane.showMessageDialog(
+                                            null,
+                                            "Servicio agregado correctamente.\n\n"
+                                                    +
+                                                    "Servicio: "
+                                                    + servicio.getNombre()
+                                                    +
+                                                    "\nPrecio por noche: $"
+                                                    + servicio.getPrecio()
+                                                    +
+                                                    "\nDisponibilidad restante: "
+                                                    + servicio.getDisponibilidad()
+                                    );
+
+                                }
+
+                            } else {
+
+                                JOptionPane.showMessageDialog(
+                                        null,
+                                        "El servicio no esta disponible."
+                                );
+                            }
+
+                        } else {
+
+                            JOptionPane.showMessageDialog(
+                                    null,
+                                    "El servicio no existe."
+                            );
+                        }
+
+                        agregarServicio =
+                                JOptionPane.showConfirmDialog(
+                                        null,
+                                        "¿Desea agregar otro servicio?",
+                                        "Servicios",
+                                        JOptionPane.YES_NO_OPTION
+                                );
+                    }
+
+                } else {
+
+                    JOptionPane.showMessageDialog(
+                            null,
+                            "La reserva no existe."
+                    );
+                }
+
+                // ==========================================
+                // 5. MOSTRAR SERVICIOS
+                // ==========================================
+
+            } else if(opcion == 5) {
+
+                String servicios =
+                        hotel.mostrarServiciosAdicionales();
+
+                JOptionPane.showMessageDialog(
+                        null,
+                        "SERVICIOS ADICIONALES\n\n"
+                                + servicios
+                );
+
+                // ==========================================
+                // 6. CONSULTAR VALOR TOTAL
+                // ==========================================
+
+            } else if(opcion == 6) {
 
                 String codigo =
                         JOptionPane.showInputDialog(
@@ -526,7 +600,7 @@ public class Main {
                             reserva.calcularCantidadNoches();
 
                     // ==================================
-                    // MOSTRAR HABITACIONES
+                    // HABITACIONES
                     // ==================================
 
                     String habitaciones = "";
@@ -543,18 +617,20 @@ public class Main {
                                         .get(i);
 
                         habitaciones =
-                                habitaciones +
-                                        "Habitacion: " +
-                                        habitacion.getNumeroHabitacion() +
-                                        "\nTipo: " +
-                                        habitacion.getTipo() +
-                                        "\nPrecio por noche: $" +
-                                        habitacion.getPrecioPorNoche() +
-                                        "\n\n";
+                                habitaciones
+                                        + "Habitacion: "
+                                        + habitacion
+                                        .getNumeroHabitacion()
+                                        + "\nTipo: "
+                                        + habitacion.getTipo()
+                                        + "\nPrecio por noche: $"
+                                        + habitacion
+                                        .getPrecioPorNoche()
+                                        + "\n\n";
                     }
 
                     // ==================================
-                    // MOSTRAR SERVICIOS
+                    // SERVICIOS
                     // ==================================
 
                     String servicios = "";
@@ -580,52 +656,57 @@ public class Main {
                                             .get(i);
 
                             servicios =
-                                    servicios +
-                                            "Codigo: " +
-                                            servicio.getCodigo() +
-                                            "\nNombre: " +
-                                            servicio.getNombre() +
-                                            "\nPrecio: $" +
-                                            servicio.getPrecio() +
-                                            "\n\n";
+                                    servicios
+                                            + "Codigo: "
+                                            + servicio.getCodigo()
+                                            + "\nNombre: "
+                                            + servicio.getNombre()
+                                            + "\nPrecio por noche: $"
+                                            + servicio.getPrecio()
+                                            + "\nValor por "
+                                            + noches
+                                            + " noches: $"
+                                            + (servicio.getPrecio()
+                                            * noches)
+                                            + "\n\n";
                         }
                     }
 
                     // ==================================
-                    // MOSTRAR INFORMACION
+                    // INFORMACION
                     // ==================================
 
                     JOptionPane.showMessageDialog(
                             null,
-                            "RESERVA\n\n" +
-
-                                    "Codigo: " +
-                                    reserva.getCodigoReserva() +
-
-                                    "\nHuesped: " +
-                                    reserva.getHuesped()
-                                            .getNombreCompleto() +
-
-                                    "\n\nHABITACIONES\n" +
-                                    habitaciones +
-
-                                    "SERVICIOS ADICIONALES\n" +
-                                    servicios +
-
-                                    "Fecha de entrada: " +
-                                    reserva.getFechaEntrada() +
-
-                                    "\nFecha de salida: " +
-                                    reserva.getFechaSalida() +
-
-                                    "\nNoches: " +
-                                    noches +
-
-                                    "\nMetodo de pago: " +
-                                    reserva.getMetodoPago() +
-
-                                    "\n\nVALOR TOTAL: $" +
-                                    total
+                            "RESERVA\n\n"
+                                    +
+                                    "Codigo: "
+                                    + reserva.getCodigoReserva()
+                                    +
+                                    "\nHuesped: "
+                                    + reserva.getHuesped()
+                                    .getNombreCompleto()
+                                    +
+                                    "\n\nHABITACIONES\n"
+                                    + habitaciones
+                                    +
+                                    "SERVICIOS ADICIONALES\n"
+                                    + servicios
+                                    +
+                                    "Fecha de entrada: "
+                                    + reserva.getFechaEntrada()
+                                    +
+                                    "\nFecha de salida: "
+                                    + reserva.getFechaSalida()
+                                    +
+                                    "\nNoches: "
+                                    + noches
+                                    +
+                                    "\nMetodo de pago: "
+                                    + reserva.getMetodoPago()
+                                    +
+                                    "\n\nVALOR TOTAL: $"
+                                    + total
                     );
 
                 } else {
@@ -637,12 +718,17 @@ public class Main {
                 }
 
                 // ==========================================
-                // 5. MOSTRAR HABITACIONES
+                // 7. MOSTRAR HABITACIONES
                 // ==========================================
 
-            } else if(opcion == 5) {
+            } else if(opcion == 7) {
 
                 String mensaje = "";
+
+                SimpleDateFormat formato =
+                        new SimpleDateFormat(
+                                "dd/MM/yyyy"
+                        );
 
                 for(int i = 0;
                     i < hotel
@@ -656,16 +742,73 @@ public class Main {
                                     .get(i);
 
                     mensaje =
-                            mensaje +
-                                    "Habitacion: " +
-                                    habitacion.getNumeroHabitacion() +
-                                    "\nTipo: " +
-                                    habitacion.getTipo() +
-                                    "\nPrecio por noche: $" +
-                                    habitacion.getPrecioPorNoche() +
-                                    "\nEstado: " +
-                                    hotel.obtenerEstadoHabitacion(habitacion) +
-                                    "\n\n";
+                            mensaje
+                                    + "Habitacion: "
+                                    + habitacion
+                                    .getNumeroHabitacion()
+                                    + "\nTipo: "
+                                    + habitacion.getTipo()
+                                    + "\nPrecio por noche: $"
+                                    + habitacion
+                                    .getPrecioPorNoche();
+
+                    boolean tieneReserva = false;
+
+                    for(int j = 0;
+                        j < hotel
+                                .getListHotelReservas()
+                                .size();
+                        j++) {
+
+                        Reserva reserva =
+                                hotel
+                                        .getListHotelReservas()
+                                        .get(j);
+
+                        for(int k = 0;
+                            k < reserva
+                                    .getListReservaHabitaciones()
+                                    .size();
+                            k++) {
+
+                            Habitacion habitacionReserva =
+                                    reserva
+                                            .getListReservaHabitaciones()
+                                            .get(k);
+
+                            if(habitacionReserva
+                                    .getNumeroHabitacion()
+                                    ==
+                                    habitacion
+                                            .getNumeroHabitacion()) {
+
+                                tieneReserva = true;
+
+                                mensaje =
+                                        mensaje
+                                                + "\nReservada desde: "
+                                                + formato.format(
+                                                reserva
+                                                        .getFechaEntrada()
+                                        )
+                                                + "\nHasta: "
+                                                + formato.format(
+                                                reserva
+                                                        .getFechaSalida()
+                                        );
+                            }
+                        }
+                    }
+
+                    if(!tieneReserva) {
+
+                        mensaje =
+                                mensaje
+                                        + "\nEstado: Disponible";
+                    }
+
+                    mensaje =
+                            mensaje + "\n\n";
                 }
 
                 JOptionPane.showMessageDialog(
@@ -674,15 +817,17 @@ public class Main {
                 );
 
                 // ==========================================
-                // 6. CONSULTAR INGRESOS POR FECHA
+                // 8. INGRESOS POR FECHA
                 // ==========================================
 
-            } else if(opcion == 6) {
+            } else if(opcion == 8) {
 
                 try {
 
                     SimpleDateFormat formato =
-                            new SimpleDateFormat("dd/MM/yyyy");
+                            new SimpleDateFormat(
+                                    "dd/MM/yyyy"
+                            );
 
                     String fechaTexto =
                             JOptionPane.showInputDialog(
@@ -690,7 +835,9 @@ public class Main {
                             );
 
                     Date fecha =
-                            formato.parse(fechaTexto);
+                            formato.parse(
+                                    fechaTexto
+                            );
 
                     double ingresos =
                             hotel.consultarIngresosPorFecha(
@@ -699,24 +846,25 @@ public class Main {
 
                     JOptionPane.showMessageDialog(
                             null,
-                            "Los ingresos de esa fecha son: $" +
-                                    ingresos
+                            "Los ingresos de esa fecha son: $"
+                                    + ingresos
                     );
 
                 } catch(ParseException e) {
 
                     JOptionPane.showMessageDialog(
                             null,
-                            "Formato de fecha incorrecto.\n" +
+                            "Formato de fecha incorrecto.\n"
+                                    +
                                     "Use el formato: dd/MM/yyyy"
                     );
                 }
 
                 // ==========================================
-                // 7. SALIR
+                // 9. SALIR
                 // ==========================================
 
-            } else if(opcion == 7) {
+            } else if(opcion == 9) {
 
                 JOptionPane.showMessageDialog(
                         null,

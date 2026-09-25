@@ -1,7 +1,7 @@
 package co.edu.uniquindio.model;
 
 public class Habitacion {
-    // Atributos
+
     private int numeroHabitacion;
     private int piso;
     private String tipo;
@@ -9,9 +9,11 @@ public class Habitacion {
     private double precioPorNoche;
     private String estado;
 
-    // Constructor
-    public Habitacion(int numeroHabitacion, int piso, String tipo,
-                      int capacidadMaxima, double precioPorNoche,
+    public Habitacion(int numeroHabitacion,
+                      int piso,
+                      String tipo,
+                      int capacidadMaxima,
+                      double precioPorNoche,
                       String estado) {
 
         this.numeroHabitacion = numeroHabitacion;
@@ -22,14 +24,11 @@ public class Habitacion {
         this.estado = estado;
     }
 
-    /** Metodo para verificar disponibilidad
-     */
     public boolean verificarDisponibilidad() {
+
         return estado.equals("Disponible");
     }
 
-
-    // GETTERS Y SETTERS
     public int getNumeroHabitacion() {
         return numeroHabitacion;
     }
@@ -80,6 +79,7 @@ public class Habitacion {
 
     @Override
     public String toString() {
+
         return "Habitacion{" +
                 "numeroHabitacion=" + numeroHabitacion +
                 ", piso=" + piso +

@@ -1,16 +1,14 @@
 package co.edu.uniquindio.model;
 
+
 public class Huesped {
-    // Atributos de la clase Huesped
+
     private String nombreCompleto;
     private String documentoIdentidad;
     private String telefono;
     private String correoElectronico;
     private String paisProcedencia;
 
-    /**
-     * Constructor de la clase Huesped
-     */
     public Huesped(String nombreCompleto,
                    String documentoIdentidad,
                    String telefono,
@@ -23,18 +21,22 @@ public class Huesped {
         this.correoElectronico = correoElectronico;
         this.paisProcedencia = paisProcedencia;
     }
+
     /**
-     * Metodo que verifica si el telefono
-     * corresponde a un numero perfecto
+     * Metodo que determina si el numero
+     * de telefono corresponde a un
+     * numero perfecto.
      */
     public boolean esNumeroTelefonoPerfecto() {
 
         int numero = Integer.parseInt(telefono);
+
         int suma = 0;
 
         for(int i = 1; i < numero; i++) {
 
             if(numero % i == 0) {
+
                 suma = suma + i;
             }
         }
@@ -81,8 +83,10 @@ public class Huesped {
     public void setPaisProcedencia(String paisProcedencia) {
         this.paisProcedencia = paisProcedencia;
     }
+
     @Override
     public String toString() {
+
         return "Huesped{" +
                 "nombreCompleto='" + nombreCompleto + '\'' +
                 ", documentoIdentidad='" + documentoIdentidad + '\'' +

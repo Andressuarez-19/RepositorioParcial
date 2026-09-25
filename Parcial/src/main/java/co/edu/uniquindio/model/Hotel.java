@@ -1,28 +1,22 @@
 package co.edu.uniquindio.model;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class Hotel {
 
-    // Atributos de la clase Hotel
     private String nombreComercial;
     private String NIT;
     private String direccion;
     private String telefono;
     private String paginaWeb;
 
-    // Relaciones de la clase Hotel
     private List<Huesped> listHotelHuespedes;
     private List<Habitacion> listHotelHabitaciones;
     private List<Reserva> listHotelReservas;
     private List<ServicioAdicional> listHotelServicios;
 
-    /**
-     * Metodo constructor de la clase Hotel
-     */
     public Hotel(String nombreComercial,
                  String NIT,
                  String direccion,
@@ -35,16 +29,28 @@ public class Hotel {
         this.telefono = telefono;
         this.paginaWeb = paginaWeb;
 
-        this.listHotelHuespedes = new ArrayList<>();
-        this.listHotelHabitaciones = new ArrayList<>();
-        this.listHotelReservas = new ArrayList<>();
-        this.listHotelServicios = new ArrayList<>();
+        this.listHotelHuespedes =
+                new ArrayList<>();
+
+        this.listHotelHabitaciones =
+                new ArrayList<>();
+
+        this.listHotelReservas =
+                new ArrayList<>();
+
+        this.listHotelServicios =
+                new ArrayList<>();
     }
 
-    /**
-     * Metodo que permite registrar un huesped
-     */
-    public boolean registrarHuesped(String nombreCompleto, String documentoIdentidad, String telefono, String correoElectronico, String paisProcedencia) {
+    // ==========================================
+    // HUESPEDES
+    // ==========================================
+
+    public boolean registrarHuesped(String nombreCompleto,
+                                    String documentoIdentidad,
+                                    String telefono,
+                                    String correoElectronico,
+                                    String paisProcedencia) {
 
         Huesped huesped =
                 consultarHuespedPorTelefono(telefono);
@@ -68,11 +74,8 @@ public class Hotel {
         return false;
     }
 
-    /**
-     * Metodo que permite buscar un huesped
-     * por medio de su telefono
-     */
-    public Huesped consultarHuespedPorTelefono(String telefono) {
+    public Huesped consultarHuespedPorTelefono(
+            String telefono) {
 
         Huesped encontrado = null;
 
@@ -83,9 +86,11 @@ public class Hotel {
             Huesped huesped =
                     listHotelHuespedes.get(i);
 
-            if(huesped.getTelefono().equals(telefono)) {
+            if(huesped.getTelefono()
+                    .equals(telefono)) {
 
                 encontrado = huesped;
+
                 break;
             }
         }
@@ -93,10 +98,17 @@ public class Hotel {
         return encontrado;
     }
 
-    /**
-     * Metodo que permite registrar una habitacion
-     */
-    public boolean registrarHabitacion(int numeroHabitacion, int piso, String tipo, int capacidadMaxima, double precioPorNoche, String estado) {
+    // ==========================================
+    // HABITACIONES
+    // ==========================================
+
+    public boolean registrarHabitacion(
+            int numeroHabitacion,
+            int piso,
+            String tipo,
+            int capacidadMaxima,
+            double precioPorNoche,
+            String estado) {
 
         Habitacion habitacion =
                 buscarHabitacion(numeroHabitacion);
@@ -104,9 +116,17 @@ public class Hotel {
         if(habitacion == null) {
 
             Habitacion nuevaHabitacion =
-                    new Habitacion(numeroHabitacion, piso, tipo, capacidadMaxima, precioPorNoche, estado);
+                    new Habitacion(
+                            numeroHabitacion,
+                            piso,
+                            tipo,
+                            capacidadMaxima,
+                            precioPorNoche,
+                            estado
+                    );
 
-            listHotelHabitaciones.add(nuevaHabitacion);
+            listHotelHabitaciones
+                    .add(nuevaHabitacion);
 
             return true;
         }
@@ -114,9 +134,6 @@ public class Hotel {
         return false;
     }
 
-    /**
-     * Metodo que permite buscar una habitacion
-     */
     public Habitacion buscarHabitacion(int numero) {
 
         Habitacion encontrada = null;
@@ -128,9 +145,11 @@ public class Hotel {
             Habitacion habitacion =
                     listHotelHabitaciones.get(i);
 
-            if(habitacion.getNumeroHabitacion() == numero) {
+            if(habitacion.getNumeroHabitacion()
+                    == numero) {
 
                 encontrada = habitacion;
+
                 break;
             }
         }
@@ -139,8 +158,8 @@ public class Hotel {
     }
 
     /**
-     * Metodo que permite verificar si una habitacion
-     * esta disponible para unas fechas determinadas.
+     * Verifica si una habitacion esta disponible
+     * para las fechas seleccionadas.
      */
     public boolean verificarDisponibilidadHabitacion(
             Habitacion habitacion,
@@ -167,8 +186,11 @@ public class Hotel {
                                 .getListReservaHabitaciones()
                                 .get(j);
 
-                if(habitacionReservada.getNumeroHabitacion()
-                        == habitacion.getNumeroHabitacion()) {
+                if(habitacionReservada
+                        .getNumeroHabitacion()
+                        ==
+                        habitacion
+                                .getNumeroHabitacion()) {
 
                     Date entradaReserva =
                             reserva.getFechaEntrada();
@@ -179,7 +201,9 @@ public class Hotel {
                     boolean seCruzanFechas =
                             fechaEntrada.before(salidaReserva)
                                     &&
-                                    fechaSalida.after(entradaReserva);
+                                    fechaSalida.after(
+                                            entradaReserva
+                                    );
 
                     if(seCruzanFechas) {
 
@@ -192,90 +216,16 @@ public class Hotel {
         return disponible;
     }
 
-    /**
-     * Metodo que permite obtener el estado real
-     * de una habitacion dependiendo de sus reservas.
-     *
-     * Si la habitacion no tiene reservas:
-     * Disponible.
-     *
-     * Si tiene una o varias reservas:
-     * muestra las fechas de cada reserva.
-     */
-    public String obtenerEstadoHabitacion(
-            Habitacion habitacion) {
+    // ==========================================
+    // SERVICIOS
+    // ==========================================
 
-        SimpleDateFormat formato =
-                new SimpleDateFormat("dd/MM/yyyy");
-
-        String estado = "Disponible";
-
-        for(int i = 0;
-            i < listHotelReservas.size();
-            i++) {
-
-            Reserva reserva =
-                    listHotelReservas.get(i);
-
-            for(int j = 0;
-                j < reserva
-                        .getListReservaHabitaciones()
-                        .size();
-                j++) {
-
-                Habitacion habitacionReservada =
-                        reserva
-                                .getListReservaHabitaciones()
-                                .get(j);
-
-                if(habitacionReservada
-                        .getNumeroHabitacion()
-                        ==
-                        habitacion
-                                .getNumeroHabitacion()) {
-
-                    String fechaEntrada =
-                            formato.format(
-                                    reserva.getFechaEntrada()
-                            );
-
-                    String fechaSalida =
-                            formato.format(
-                                    reserva.getFechaSalida()
-                            );
-
-                    if(estado.equals("Disponible")) {
-
-                        estado =
-                                "Reservada para: " +
-                                        fechaEntrada +
-                                        " al " +
-                                        fechaSalida;
-
-                    } else {
-
-                        estado =
-                                estado +
-                                        "\nReservada para: " +
-                                        fechaEntrada +
-                                        " al " +
-                                        fechaSalida;
-                    }
-                }
-            }
-        }
-
-        return estado;
-    }
-
-    /**
-     * Metodo que permite registrar un servicio adicional
-     */
-    public boolean registrarServicio(String codigo,
-                                     String nombre,
-                                     String descripcion,
-                                     double precio,
-                                     boolean disponible) {
+    public boolean registrarServicio(
+            String codigo,
+            String nombre,
+            String descripcion,
+            double precio,
+            int disponibilidad) {
 
         ServicioAdicional servicio =
                 buscarServicio(codigo);
@@ -283,9 +233,16 @@ public class Hotel {
         if(servicio == null) {
 
             ServicioAdicional nuevoServicio =
-                    new ServicioAdicional(codigo, nombre, descripcion, precio, disponible);
+                    new ServicioAdicional(
+                            codigo,
+                            nombre,
+                            descripcion,
+                            precio,
+                            disponibilidad
+                    );
 
-            listHotelServicios.add(nuevoServicio);
+            listHotelServicios
+                    .add(nuevoServicio);
 
             return true;
         }
@@ -293,13 +250,8 @@ public class Hotel {
         return false;
     }
 
-
-    /**
-     * Metodo que permite buscar un servicio.
-     *
-     * Permite escribir S1 o s1.
-     */
-    public ServicioAdicional buscarServicio(String codigo) {
+    public ServicioAdicional buscarServicio(
+            String codigo) {
 
         ServicioAdicional encontrado = null;
 
@@ -314,6 +266,7 @@ public class Hotel {
                     .equalsIgnoreCase(codigo)) {
 
                 encontrado = servicio;
+
                 break;
             }
         }
@@ -322,12 +275,86 @@ public class Hotel {
     }
 
     /**
-     * Metodo que permite registrar una reserva
+     * Agrega un servicio a una reserva
+     * y disminuye su disponibilidad.
      */
-    public boolean registrarReserva(Reserva reserva) {
+    public boolean agregarServicioAReserva(
+            String codigoReserva,
+            String codigoServicio) {
+
+        Reserva reserva =
+                buscarReserva(codigoReserva);
+
+        if(reserva == null) {
+
+            return false;
+        }
+
+        ServicioAdicional servicio =
+                buscarServicio(codigoServicio);
+
+        if(servicio == null) {
+
+            return false;
+        }
+
+        if(!servicio.estaDisponible()) {
+
+            return false;
+        }
+
+        reserva
+                .getListReservaServicios()
+                .add(servicio);
+
+        servicio.disminuirDisponibilidad();
+
+        return true;
+    }
+
+    /**
+     * Muestra los servicios y su disponibilidad actual.
+     */
+    public String mostrarServiciosAdicionales() {
+
+        String mensaje = "";
+
+        for(int i = 0;
+            i < listHotelServicios.size();
+            i++) {
+
+            ServicioAdicional servicio =
+                    listHotelServicios.get(i);
+
+            mensaje =
+                    mensaje +
+                            "Codigo: " +
+                            servicio.getCodigo() +
+                            "\nNombre: " +
+                            servicio.getNombre() +
+                            "\nDescripcion: " +
+                            servicio.getDescripcion() +
+                            "\nPrecio por noche: $" +
+                            servicio.getPrecio() +
+                            "\nDisponibilidad: " +
+                            servicio.getDisponibilidad() +
+                            "\n\n";
+        }
+
+        return mensaje;
+    }
+
+    // ==========================================
+    // RESERVAS
+    // ==========================================
+
+    public boolean registrarReserva(
+            Reserva reserva) {
 
         Reserva encontrada =
-                buscarReserva(reserva.getCodigoReserva());
+                buscarReserva(
+                        reserva.getCodigoReserva()
+                );
 
         if(encontrada == null) {
 
@@ -339,11 +366,8 @@ public class Hotel {
         return false;
     }
 
-
-    /**
-     * Metodo que permite buscar una reserva
-     */
-    public Reserva buscarReserva(String codigo) {
+    public Reserva buscarReserva(
+            String codigo) {
 
         Reserva encontrada = null;
 
@@ -358,6 +382,7 @@ public class Hotel {
                     .equals(codigo)) {
 
                 encontrada = reserva;
+
                 break;
             }
         }
@@ -365,12 +390,8 @@ public class Hotel {
         return encontrada;
     }
 
-
-    /**
-     * Metodo que permite consultar el valor
-     * total de una reserva
-     */
-    public double consultarValorTotalReserva(String codigo) {
+    public double consultarValorTotalReserva(
+            String codigo) {
 
         Reserva reserva =
                 buscarReserva(codigo);
@@ -383,11 +404,12 @@ public class Hotel {
         return 0;
     }
 
-    /**
-     * Metodo que permite consultar los ingresos
-     * de las reservas realizadas en una fecha
-     */
-    public double consultarIngresosPorFecha(Date fecha) {
+    // ==========================================
+    // INGRESOS
+    // ==========================================
+
+    public double consultarIngresosPorFecha(
+            Date fecha) {
 
         double total = 0;
 
@@ -410,14 +432,19 @@ public class Hotel {
         return total;
     }
 
+    // ==========================================
     // GETTERS Y SETTERS
+    // ==========================================
 
     public String getNombreComercial() {
         return nombreComercial;
     }
 
-    public void setNombreComercial(String nombreComercial) {
-        this.nombreComercial = nombreComercial;
+    public void setNombreComercial(
+            String nombreComercial) {
+
+        this.nombreComercial =
+                nombreComercial;
     }
 
     public String getNIT() {
