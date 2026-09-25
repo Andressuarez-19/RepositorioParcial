@@ -2,79 +2,95 @@ package model;
 
 public class ServicioAdicional {
 
-    //ATRIBUTOS
+        private String codigo;
+        private String nombre;
+        private String descripcion;
+        private double precio;
+        private int disponibilidad;
 
-    private String codigo;
-    private String nombre;
-    private String descripcion;
-    private double precio;
-    private boolean disponible;
+        public ServicioAdicional(String codigo,
+                                 String nombre,
+                                 String descripcion,
+                                 double precio,
+                                 int disponibilidad) {
 
-    // CONSTRUCTOR
-    public ServicioAdicional(String codigo, String nombre, String descripcion, double precio, boolean disponible) {
+            this.codigo = codigo;
+            this.nombre = nombre;
+            this.descripcion = descripcion;
+            this.precio = precio;
+            this.disponibilidad = disponibilidad;
+        }
 
-        this.codigo = codigo;
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.precio = precio;
-        this.disponible = disponible;
-    }
-     /** Metodo que permite saber si esta disponible
+        /**
+         * Metodo que permite verificar
+         * si el servicio esta disponible.
          */
+        public boolean estaDisponible() {
 
-    public boolean estaDisponible() {
-        return disponible;
-    }
-    // GETTER Y SETTER
+            return disponibilidad > 0;
+        }
 
-    public String getCodigo() {
-        return codigo;
-    }
+        /**
+         * Metodo que disminuye la disponibilidad
+         * del servicio en una unidad.
+         */
+        public void disminuirDisponibilidad() {
 
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
-    }
+            if (disponibilidad > 0) {
 
-    public String getNombre() {
-        return nombre;
-    }
+                disponibilidad--;
+            }
+        }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
+        public String getCodigo() {
+            return codigo;
+        }
 
-    public String getDescripcion() {
-        return descripcion;
-    }
+        public void setCodigo(String codigo) {
+            this.codigo = codigo;
+        }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
+        public String getNombre() {
+            return nombre;
+        }
 
-    public double getPrecio() {
-        return precio;
-    }
+        public void setNombre(String nombre) {
+            this.nombre = nombre;
+        }
 
-    public void setPrecio(double precio) {
-        this.precio = precio;
-    }
+        public String getDescripcion() {
+            return descripcion;
+        }
 
-    public boolean isDisponible() {
-        return disponible;
-    }
+        public void setDescripcion(String descripcion) {
+            this.descripcion = descripcion;
+        }
 
-    public void setDisponible(boolean disponible) {
-        this.disponible = disponible;
-    }
+        public double getPrecio() {
+            return precio;
+        }
 
-    @Override
-    public String toString() {
-        return "ServicioAdicional{" +
-                "codigo='" + codigo + '\'' +
-                ", nombre='" + nombre + '\'' +
-                ", descripcion='" + descripcion + '\'' +
-                ", precio=" + precio +
-                ", disponible=" + disponible +
-                '}';
+        public void setPrecio(double precio) {
+            this.precio = precio;
+        }
+
+        public int getDisponibilidad() {
+            return disponibilidad;
+        }
+
+        public void setDisponibilidad(int disponibilidad) {
+            this.disponibilidad = disponibilidad;
+        }
+
+        @Override
+        public String toString() {
+
+            return "ServicioAdicional{" +
+                    "codigo='" + codigo + '\'' +
+                    ", nombre='" + nombre + '\'' +
+                    ", descripcion='" + descripcion + '\'' +
+                    ", precio=" + precio +
+                    ", disponibilidad=" + disponibilidad +
+                    '}';
+        }
     }
-}
