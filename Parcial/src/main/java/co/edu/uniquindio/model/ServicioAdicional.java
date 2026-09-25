@@ -1,31 +1,46 @@
-package co.edu.uniquindio.model;
+package uniquindio.edu.co.model;
 
 public class ServicioAdicional {
-
-    //ATRIBUTOS
 
     private String codigo;
     private String nombre;
     private String descripcion;
     private double precio;
-    private boolean disponible;
+    private int disponibilidad;
 
-    // CONSTRUCTOR
-    public ServicioAdicional(String codigo, String nombre, String descripcion, double precio, boolean disponible) {
+    public ServicioAdicional(String codigo,
+                             String nombre,
+                             String descripcion,
+                             double precio,
+                             int disponibilidad) {
 
         this.codigo = codigo;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.precio = precio;
-        this.disponible = disponible;
+        this.disponibilidad = disponibilidad;
     }
-    /** Metodo que permite saber si esta disponible
-     */
 
+    /**
+     * Metodo que permite verificar
+     * si el servicio esta disponible.
+     */
     public boolean estaDisponible() {
-        return disponible;
+
+        return disponibilidad > 0;
     }
-    // GETTER Y SETTER
+
+    /**
+     * Metodo que disminuye la disponibilidad
+     * del servicio en una unidad.
+     */
+    public void disminuirDisponibilidad() {
+
+        if(disponibilidad > 0) {
+
+            disponibilidad--;
+        }
+    }
 
     public String getCodigo() {
         return codigo;
@@ -59,22 +74,23 @@ public class ServicioAdicional {
         this.precio = precio;
     }
 
-    public boolean isDisponible() {
-        return disponible;
+    public int getDisponibilidad() {
+        return disponibilidad;
     }
 
-    public void setDisponible(boolean disponible) {
-        this.disponible = disponible;
+    public void setDisponibilidad(int disponibilidad) {
+        this.disponibilidad = disponibilidad;
     }
 
     @Override
     public String toString() {
+
         return "ServicioAdicional{" +
                 "codigo='" + codigo + '\'' +
                 ", nombre='" + nombre + '\'' +
                 ", descripcion='" + descripcion + '\'' +
                 ", precio=" + precio +
-                ", disponible=" + disponible +
+                ", disponibilidad=" + disponibilidad +
                 '}';
     }
 }
